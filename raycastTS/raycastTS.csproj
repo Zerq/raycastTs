@@ -89,7 +89,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\model\fake3d.state.ts" />
+    <TypeScriptCompile Include="app\model\statelike.ts" />
     <TypeScriptCompile Include="app\model\grid.ts" />
+    <TypeScriptCompile Include="app\model\player.ts" />
     <TypeScriptCompile Include="app\model\point-types.ts" />
     <TypeScriptCompile Include="app\model\tilebase.ts" />
     <TypeScriptCompile Include="app\model\tilecollection.ts" />

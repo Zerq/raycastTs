@@ -1,6 +1,7 @@
 "use strict";
 var grid_1 = require("./model/grid");
 var tilecollection_1 = require("./model/tilecollection");
+var player_1 = require("./model/player");
 var grid = new grid_1.Grid(6, 6);
 grid.add(0, 0, 0);
 grid.add(0, 1, 0);
@@ -37,6 +38,10 @@ grid.add(0, 2, 5);
 grid.add(0, 3, 5);
 grid.add(1, 4, 5);
 grid.add(1, 5, 5);
+var player = new player_1.Player();
+player.x = 170;
+player.y = 74;
+player.angle = 0;
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 var img = document.getElementById("img");
@@ -48,5 +53,6 @@ grid.gridTraverse(function (n, x, y) {
     }
 }, function () {
 });
+player.render(context);
 //14kg, vesa200 
 //# sourceMappingURL=main.js.map
