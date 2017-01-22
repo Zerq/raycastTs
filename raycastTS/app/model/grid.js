@@ -5,36 +5,24 @@ var Grid = (function () {
         this.height = height;
         this.width = width;
     }
-    Grid.prototype.add = function (item, x, y, xOff, yOff, widthOff, heithtOff) {
-        if (xOff === void 0) { xOff = 0; }
-        if (yOff === void 0) { yOff = 0; }
-        if (widthOff === void 0) { widthOff = this.width; }
-        if (heithtOff === void 0) { heithtOff = this.height; }
-        if (x + xOff < xOff || y + yOff < yOff || x > widthOff || y > heithtOff) {
+    Grid.prototype.add = function (item, x, y) {
+        if (x < 0 || y < 0 || x > this.width || y > this.height) {
             throw new Error("grid out of range!");
         }
-        if (this.data[x + xOff] == undefined) {
-            this.data[x + xOff] = [];
+        if (this.data[x] == undefined) {
+            this.data[x] = [];
         }
-        this.data[x + xOff][y + yOff] = item;
+        this.data[x][y] = item;
     };
-    Grid.prototype.remove = function (x, y, xOff, yOff) {
-        if (xOff === void 0) { xOff = 0; }
-        if (yOff === void 0) { yOff = 0; }
-        this.data[x + xOff][y + yOff] = undefined;
+    Grid.prototype.remove = function (x, y) {
+        this.data[x][y] = undefined;
     };
-    Grid.prototype.get = function (x, y, xOff, yOff) {
-        if (xOff === void 0) { xOff = 0; }
-        if (yOff === void 0) { yOff = 0; }
-        return this.data[x + xOff][y + yOff];
+    Grid.prototype.get = function (x, y) {
+        return this.data[x][y];
     };
-    Grid.prototype.gridTraverse = function (itemfunc, newLineFunc, xOff, yOff, widthOff, heithtOff) {
-        if (xOff === void 0) { xOff = 0; }
-        if (yOff === void 0) { yOff = 0; }
-        if (widthOff === void 0) { widthOff = this.width; }
-        if (heithtOff === void 0) { heithtOff = this.height; }
-        for (var y = yOff; y < heithtOff; y++) {
-            for (var x = xOff; x < widthOff; x++) {
+    Grid.prototype.gridTraverse = function (itemfunc, newLineFunc) {
+        for (var y = 0; y < this.height; y++) {
+            for (var x = 0; x < this.width; x++) {
                 var item = this.data[x][y];
                 itemfunc(item, x, y);
             }

@@ -8,25 +8,25 @@ export class Grid<T> {
     private data: T[][];
     public width: number;
     public height: number;
-    public add(item: T, x: number, y: number, xOff: number = 0, yOff: number = 0, widthOff: number = this.width, heithtOff: number = this.height) {
-        if (x + xOff < xOff || y + yOff < yOff || x > widthOff || y > heithtOff) {
+    public add(item: T, x: number, y: number) {
+        if (x < 0 || y < 0 || x > this.width || y > this.height) {
             throw new Error("grid out of range!");
         }
-        if (this.data[x + xOff] == undefined) {
-            this.data[x + xOff] = [];
+        if (this.data[x] == undefined) {
+            this.data[x] = [];
         }
 
-        this.data[x + xOff][y + yOff] = item;
+        this.data[x][y] = item;
     }
-    public remove(x: number, y: number, xOff: number = 0, yOff: number = 0) {
-        this.data[x + xOff][y + yOff] = undefined;
+    public remove(x: number, y: number) {
+        this.data[x][y] = undefined;
     }
-    public get(x: number, y: number, xOff: number = 0, yOff: number = 0): T {
-        return this.data[x + xOff][y + yOff];
+    public get(x: number, y: number): T {
+        return this.data[x][y];
     }
-    public gridTraverse(itemfunc: (itm: T, x: number, y: number) => void, newLineFunc: () => void, xOff: number = 0, yOff: number = 0, widthOff: number = this.width, heithtOff: number = this.height) {
-        for (let y: number = yOff; y < heithtOff; y++) {
-            for (let x: number = xOff; x < widthOff; x++) {
+    public gridTraverse(itemfunc: (itm: T, x: number, y: number) => void, newLineFunc: () => void) {
+        for (let y: number = 0; y < this.height; y++) {
+            for (let x: number = 0; x < this.width; x++) {
                 let item = <T> this.data[x][y];
                 itemfunc(item, x, y);
             }
