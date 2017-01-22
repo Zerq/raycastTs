@@ -42,8 +42,8 @@ grid.add(null,     4, 4);
 grid.add(1,     5, 4);
 
 
-grid.add(0, 0, 5);
-grid.add(1, 1, 5);
+grid.add(null, 0, 5);
+grid.add(null, 1, 5);
 grid.add(0, 2, 5);
 grid.add(0, 3, 5);
 grid.add(1, 4, 5);
