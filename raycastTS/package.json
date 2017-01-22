@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "raycast-ts",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check"
+  },
+  "dependencies": {
+    "es6-shim": "0.35.2",
+    "zone.js": "0.7.6",
+    "systemjs": "0.19.43",
+    "qunit": "0.9.1"
+
+
+  },
+  "devDependencies": {
+    "ts-node": "1.2.1",
+    "tslint": "^4.3.0",
+    "typescript": "2.1.5",
+    "@types/node": "^6.0.42",
+     "@types/qunit": ""
+  }
+}
