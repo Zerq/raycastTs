@@ -10,17 +10,17 @@ export class TileCollection {
       new TileBase(64, 64, 64, 64, "HitlerDark")
     ];
  
-    public static GetByIndex(index: number) {
+    public static GetByIndex(index: number): TileBase {
         if (TileCollection.data.length <= index) {
             return null;
         }
         return TileCollection.data[index];
     }
-    public static GetByName(name: string) {
+    public static GetByName(name: string): TileBase {
         let result = TileCollection.data.filter(n => n.name == name);
         if (result.length == 0) {
             return null;
         }
-        return result;
+        return result[0];
     }
 }

@@ -7,6 +7,9 @@ var TileBase = (function () {
         this.width = width;
         this.name = name;
     }
+    TileBase.prototype.getColumn = function (x) {
+        return new TileBase(this.x + x, this.y, 1, this.height, "");
+    };
     return TileBase;
 }());
 exports.TileBase = TileBase;

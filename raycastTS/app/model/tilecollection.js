@@ -14,7 +14,7 @@ var TileCollection = (function () {
         if (result.length == 0) {
             return null;
         }
-        return result;
+        return result[0];
     };
     return TileCollection;
 }());

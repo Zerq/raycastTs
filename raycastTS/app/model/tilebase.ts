@@ -11,4 +11,7 @@
     y: number;
     width: number;
     height: number;
+    getColumn(x: number): TileBase {
+        return new TileBase(this.x + x, this.y, 1, this.height, "");
+    }
 }

@@ -1,7 +1,9 @@
+/// <reference path="../../node_modules/@types/es6-shim/index.d.ts" />
 "use strict";
 var grid_1 = require("./grid");
 var tilecollection_1 = require("./tilecollection");
 var player_1 = require("./player");
+var ray_1 = require("./ray");
 var Fake3dState = (function () {
     function Fake3dState() {
         this.img = document.getElementById("img");
@@ -99,9 +101,28 @@ var Fake3dState = (function () {
                 var tilefractionX = Math.round((_this.player.x / 64) * 10) / 10;
                 var tilefractionY = Math.round((_this.player.y / 64) * 10) / 10;
                 context.clearRect(400, 25, 500, 200);
-                context.font = "20px Georgia";
-                context.strokeText("x=" + tilefractionX + "    y=" + tilefractionY, 400, 50);
+                context.font = "30px arial";
+                context.fillStyle = "#ff0";
+                context.fillText("x=" + tilefractionX + "    y=" + tilefractionY, 400, 50);
+                var deg = (Math.PI / 180);
                 _this.player.render(context);
+                var rayAnglePart = 90 * deg / 320;
+                var rays = new Array();
+                for (var raycount = 0; raycount < 320; raycount++) {
+                    var angle = (_this.player.angle - 45) + (rayAnglePart * raycount);
+                    var x = Math.cos(angle);
+                    var y = Math.sin(angle);
+                    rays.push(ray_1.Ray.cast(x, y, _this.player, _this.grid));
+                }
+                var i_1 = 0;
+                rays.forEach(function (n) {
+                    var tile = tilecollection_1.TileCollection.GetByIndex(n.tileIndex);
+                    if (tile != null) {
+                        var tileSlice = tile.getColumn(n.xTilePixelColumn);
+                        context.drawImage(_this.img, tileSlice.x, tileSlice.y, tileSlice.width, tileSlice.height, i_1 + 400, 200 + (n.distance / 2), 1, n.distance);
+                    }
+                    i_1++;
+                });
                 resolve();
             }
             catch (err) {

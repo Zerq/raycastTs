@@ -1,10 +1,11 @@
 ﻿/// <reference path="../../node_modules/@types/es6-shim/index.d.ts" />
+ 
 import { GameStateLike } from './statelike';
 import { Grid } from './grid';
 import { TileBase } from './tilebase';
 import { TileCollection } from './tilecollection';
 import { Player } from './player';
-
+import { Ray, RayResult } from './ray';
 
 export class Fake3dState implements GameStateLike {
 
@@ -134,11 +135,35 @@ export class Fake3dState implements GameStateLike {
                 let tilefractionY = Math.round((this.player.y / 64) * 10) / 10;
                 context.clearRect(400, 25, 500, 200);
 
-                context.font = "20px Georgia";
-                context.strokeText(`x=${tilefractionX}    y=${tilefractionY}`, 400, 50);
+                context.font = "30px arial";
+                context.fillStyle = "#ff0";
+                context.fillText(`x=${tilefractionX}    y=${tilefractionY}`, 400, 50);
 
-
+                let deg = (Math.PI / 180);
                 this.player.render(context);
+
+                let rayAnglePart =  90 * deg / 320;
+
+                let rays = new Array<RayResult>();
+                for (let raycount = 0; raycount < 320; raycount++){
+                    let angle = (this.player.angle - 45) + (rayAnglePart * raycount);
+                    let x = Math.cos(angle);
+                    let y = Math.sin(angle);   
+                    rays.push(Ray.cast(x, y, this.player, this.grid))
+                }
+
+                let i = 0;
+                rays.forEach(n => {
+                    let tile = TileCollection.GetByIndex(n.tileIndex);
+                    if (tile != null) {
+                        let tileSlice = tile.getColumn(n.xTilePixelColumn);
+                        context.drawImage(this.img, tileSlice.x, tileSlice.y, tileSlice.width, tileSlice.height, i + 400, 200 + (n.distance / 2), 1, n.distance);
+                       
+                    }
+                    i++;
+                });
+
+
                 resolve();
             } catch (err) {
                 reject(err);
