@@ -18,7 +18,7 @@ var Ray = (function () {
         }
         window["debugTestWatch"] = lenght;
         //fakeout implementation
-        return { distance: lenght - 64, failed: false, tileIndex: currentTile, xTilePixelColumn: 0 };
+        return { distance: lenght - 64, failed: false, tileIndex: currentTile, xTilePixelColumn: 32 };
     };
     return Ray;
 }());

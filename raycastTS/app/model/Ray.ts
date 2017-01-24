@@ -27,7 +27,7 @@ export class Ray {
         }
         window["debugTestWatch"] = lenght;
         //fakeout implementation
-        return <RayResult>{ distance: lenght - 64, failed: false, tileIndex: currentTile, xTilePixelColumn: 0 };
+        return <RayResult>{ distance: lenght - 64, failed: false, tileIndex: currentTile, xTilePixelColumn: 32 };
     }
     
 
