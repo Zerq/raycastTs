@@ -73,6 +73,43 @@ export class Fake3dState implements GameStateLike {
 
     update(): PromiseLike<void> {
         return new Promise<void>((resolve, reject) => {
+            let gamepads = navigator.getGamepads();
+            if (gamepads.length > 0) {
+                if (gamepads[0] != null) {
+                    if (gamepads[0].axes.length > 0) {
+                        let up: boolean = Math.round(gamepads[0].axes[1]) < 0;
+                        let down: boolean = Math.round(gamepads[0].axes[1]) > 0;
+                        let left: boolean = Math.round(gamepads[0].axes[0]) < 0;
+                        let right: boolean = Math.round(gamepads[0].axes[0]) > 0;
+
+                        let deg = (Math.PI / 180);
+
+                        let dirx = Math.cos(this.player.angle * deg) * 2
+                        let diry = Math.sin(this.player.angle * deg) * 2
+
+
+                        if (left) {
+                            this.player.angle--;
+                        }
+                        if (right) {
+                            this.player.angle++;
+                        }
+                        if (up) {
+                            this.player.x += dirx;
+                            this.player.y += diry;
+                        }
+                    
+                        if (down) {
+                            this.player.x -= dirx;
+                            this.player.y -= diry;
+                        }
+                        document.title = `${Math.round(this.player.x)},${Math.round(this.player.y)}`;
+                    }
+                }
+            }
+
+
+
             resolve();
         });
     }
