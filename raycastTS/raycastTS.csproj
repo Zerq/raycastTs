@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\model\fake3d.state.ts" />
+    <TypeScriptCompile Include="app\model\Ray.ts" />
     <TypeScriptCompile Include="app\model\statelike.ts" />
     <TypeScriptCompile Include="app\model\grid.ts" />
     <TypeScriptCompile Include="app\model\player.ts" />

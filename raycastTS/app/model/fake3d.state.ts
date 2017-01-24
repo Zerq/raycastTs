@@ -103,7 +103,10 @@ export class Fake3dState implements GameStateLike {
                             this.player.x -= dirx;
                             this.player.y -= diry;
                         }
-                        document.title = `${Math.round(this.player.x)},${Math.round(this.player.y)}`;
+
+         
+
+ 
                     }
                 }
             }
@@ -124,7 +127,17 @@ export class Fake3dState implements GameStateLike {
                         context.drawImage(this.img, tile.x, tile.y, tile.width, tile.height, x * 64, y * 64, 64, 64);
                     }
                 }, () => {
-                });
+                    });
+
+
+                let tilefractionX = Math.round((this.player.x / 64) * 10) / 10;
+                let tilefractionY = Math.round((this.player.y / 64) * 10) / 10;
+                context.clearRect(400, 25, 500, 200);
+
+                context.font = "20px Georgia";
+                context.strokeText(`x=${tilefractionX}    y=${tilefractionY}`, 400, 50);
+
+
                 this.player.render(context);
                 resolve();
             } catch (err) {

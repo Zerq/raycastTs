@@ -78,7 +78,6 @@ var Fake3dState = (function () {
                             _this.player.x -= dirx;
                             _this.player.y -= diry;
                         }
-                        document.title = Math.round(_this.player.x) + "," + Math.round(_this.player.y);
                     }
                 }
             }
@@ -97,6 +96,11 @@ var Fake3dState = (function () {
                     }
                 }, function () {
                 });
+                var tilefractionX = Math.round((_this.player.x / 64) * 10) / 10;
+                var tilefractionY = Math.round((_this.player.y / 64) * 10) / 10;
+                context.clearRect(400, 25, 500, 200);
+                context.font = "20px Georgia";
+                context.strokeText("x=" + tilefractionX + "    y=" + tilefractionY, 400, 50);
                 _this.player.render(context);
                 resolve();
             }
