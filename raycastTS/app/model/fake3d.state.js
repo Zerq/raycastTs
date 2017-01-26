@@ -106,7 +106,7 @@ var Fake3dState = (function () {
                 context.fillText("x=" + tilefractionX + "    y=" + tilefractionY, 400, 50);
                 var deg = (Math.PI / 180);
                 _this.player.render(context);
-                var rayAnglePart = 90 * deg / 320;
+                var rayAnglePart = 90 / 320;
                 var rays = new Array();
                 for (var raycount = 0; raycount < 320; raycount++) {
                     var angle = (_this.player.angle - 45) + (rayAnglePart * raycount);

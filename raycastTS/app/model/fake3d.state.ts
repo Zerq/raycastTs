@@ -142,7 +142,7 @@ export class Fake3dState implements GameStateLike {
                 let deg = (Math.PI / 180);
                 this.player.render(context);
 
-                let rayAnglePart =  90 * deg / 320;
+                let rayAnglePart =  90 / 320;
 
                 let rays = new Array<RayResult>();
                 for (let raycount = 0; raycount < 320; raycount++){
